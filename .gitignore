@@ -1,0 +1,4 @@
+config/*
+!config/CMakeList.txt
+!config/main.*
+description/*
