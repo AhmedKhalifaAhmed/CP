@@ -3,3 +3,4 @@ config/*
 !config/main.*
 description/*
 .idea/*
+.idea
