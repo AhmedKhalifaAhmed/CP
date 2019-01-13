@@ -1,6 +1,6 @@
 config/*
 !config/CMakeList.txt
-!config/main.*
+!config/Main.*
 description/*
 .idea/*
 .idea
