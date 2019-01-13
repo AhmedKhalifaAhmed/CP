@@ -12,12 +12,25 @@
 
 using namespace std;
 
-pair<int, int> *objs;// First = price, Second = weight
+void run_1() {// Handle each test case
+  int N;// Number of objects in the super market
+  cin >> N;
+  pair<int, int> *objs = new pair<int, int>[N];// First = price, Second = weight
+  for (int i = 0; i < N; i++) {
+    cin >> objs[i].first >> objs[i].second;
+  }
+  int G;// Number of people in the family
+  cin >> G;
+  int* people = new int[G];
+  for(int i=0; i<G; i++){
+    cin >> people[i];
+  }
+  sort(people, people+G);
+  long long value = 0;
 
-// Calculate the maximum value a member can carry and remove the objects from the array
-long long run_2(int N, int W) {
-  auto **memo = new long long *[N];
-  for (int i = 1; i < N; i++) {
+  int W = people[G-1];
+  long long **memo = new long long *[N];
+  for (int i = 0; i < N; i++) {
     memo[i] = new long long[W];
     for (int j = 0; j < W; j++) {
       memo[i][j] = 0;
@@ -42,37 +55,12 @@ long long run_2(int N, int W) {
       }
     }
   }
-$ for(int i=0; i<W; i++){
-$   cout << i+1 << " - ";
-$   for(int j=0; j<N; j++){
-$      cout << memo[j][i] << " ";
-$   }
-$   cout << endl;
-$ }
-$  cout << endl;
-$  cout << memo[N-1][W - 1] << endl;
-  return memo[N-1][W - 1];
-}
-
-void run_1() {// Handle each test case
-  int N;// Number of objects in the super market
-  cin >> N;
-  objs = new pair<int, int>[N];
-  for (int i = 0; i < N; i++) {
-    cin >> objs[i].first >> objs[i].second;
-  }
-  int G;// Number of people in the family
-  cin >> G;
-  int* people = new int[G];
   for(int i=0; i<G; i++){
-    cin >> people[i];
-  }
-  sort(people, people+G);
-  long long value = 0;
-  for (int i = 0; i < G; i++) {
-    value += run_2(N, people[i]);
+    value += memo[N-1][people[i]-1];
   }
   cout << value << endl;
+  for(int i=0; i<N; i++){delete[] memo[i];}
+  delete[] memo;
   delete[] objs;
   delete[] people;
 }
@@ -80,7 +68,6 @@ void run_1() {// Handle each test case
 int start() {
   int T;// Number of test cases
   cin >> T;
-  for (int t = 0; t < T; t++) { run_1(); }
+  while(T--){ run_1(); }
   return 0;
 }
-
