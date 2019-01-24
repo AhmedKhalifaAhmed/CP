@@ -68,7 +68,6 @@ public class A236917 {
     int mid = (begin + end) / 2;
     Node a = getChildren(arr, begin, mid);
     Node b = getChildren(arr, mid + 1, end);
-    Node newNode;
     if (a.operator) {
       return new Node(a, b, a.value | b.value, begin, end, !a.operator);
     }
