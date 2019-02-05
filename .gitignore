@@ -1,7 +1,5 @@
-config/*
-!config/CMakeList.txt
-!config/main.*
-description/*
-.idea/*
-.idea
-out/*
+*/*
+!*/*.cpp
+!*/*.java
+!*/*.py
+!.gitignore
